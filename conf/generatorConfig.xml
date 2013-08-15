@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+
+
+	<!-- 对应数据库jdbc的jar文件路径 -->
+	<classPathEntry location="E:\st\shiro\WebContent\WEB-INF\lib\mysql-connector-java-5.0.0-beta-bin.jar" />
+
+	<context id="context1">
+
+		<!-- 辅助生成插件 -->
+		<!-- 插件CaseInsensitiveLikePlugin ：： 支持like 模糊搜索 -->
+		<plugin type="org.mybatis.generator.plugins.CaseInsensitiveLikePlugin" />
+
+		<!-- RowBoundsPlugin ：： 支持分页 -->
+		<plugin type="org.mybatis.generator.plugins.RowBoundsPlugin" />
+
+		<!-- example改名 -->
+		<plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin">
+			<property name="searchString" value="Example$" />
+			<property name="replaceString" value="Query" />
+		</plugin>
+
+		<!-- 其他设置 -->
+		<commentGenerator>
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+
+		<!-- jdbc连接信息 -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql:///shiro" userId="root"
+			password="123456" />
+
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<!-- PO的生成（对应工程、包名） -->
+		<javaModelGenerator targetPackage="com.dodoyota.sys.security.po"
+			targetProject="shiro\src">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<!-- Mapper.xml 的生成（对应工程、包名） -->
+		<sqlMapGenerator targetPackage="com.dodoyota.sys.security.dao"
+			targetProject="shiro\src">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+
+		<!-- mapper_interface.java的生成（对应工程、包名） -->
+		<javaClientGenerator
+			targetPackage="com.dodoyota.sys.security.dao"
+			targetProject="shiro\src" type="XMLMAPPER">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+
+		<!-- 要生成的表名 以及 对应的PO类名称 -->
+		<table tableName="user" domainObjectName="UserPo"></table>
+		<table tableName="role" domainObjectName="RolePo"></table>
+		<table tableName="permission" domainObjectName="PermissionPo"></table>
+
+	</context>
+</generatorConfiguration>
